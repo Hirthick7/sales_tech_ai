@@ -16,7 +16,13 @@
             <div class="status-panel card-3d">
                 <div class="status-header">
                     <h2>
-                        <span class="status-icon" id="statusIcon">🎤</span>
+                        <span class="status-icon" id="statusIcon"><svg xmlns="http://www.w3.org/2000/svg" width="22"
+                                height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                <line x1="12" y1="19" x2="12" y2="22" />
+                            </svg></span>
                         <span id="statusText">Ready to Listen</span>
                     </h2>
                     <div class="status-indicator" id="statusIndicator">
@@ -28,12 +34,22 @@
                 <div class="control-buttons">
                     <button id="startListeningBtn" class="btn btn-primary btn-large btn-3d"
                         onclick="startLiveAssistant()">
-                        <span class="btn-icon">🎧</span>
+                        <span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M3 18v-6a9 9 0 0 1 18 0v6" />
+                                <path
+                                    d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z" />
+                            </svg></span>
                         <span class="btn-text">Start Live Assistant</span>
                     </button>
                     <button id="stopListeningBtn" class="btn btn-danger btn-large" onclick="stopLiveAssistant()"
                         style="display: none;">
-                        <span class="btn-icon">⏹️</span>
+                        <span class="btn-icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <rect x="3" y="3" width="18" height="18" rx="2" ry="2" />
+                            </svg></span>
                         <span class="btn-text">Stop Listening</span>
                     </button>
                 </div>
@@ -41,7 +57,15 @@
                 <!-- Live Transcript -->
                 <div class="transcript-section" id="transcriptSection" style="display: none;">
                     <h3>
-                        <span class="icon">📝</span>
+                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                                <polyline points="14 2 14 8 20 8" />
+                                <line x1="16" y1="13" x2="8" y2="13" />
+                                <line x1="16" y1="17" x2="8" y2="17" />
+                                <polyline points="10 9 9 9 8 9" />
+                            </svg></span>
                         Live Conversation
                     </h3>
                     <div class="transcript-box" id="transcriptBox">
@@ -60,7 +84,14 @@
             <div class="answer-display card-3d" id="answerDisplay" style="display: none;">
                 <div class="answer-header">
                     <h2>
-                        <span class="icon">💡</span>
+                        <span class="icon"><svg xmlns="http://www.w3.org/2000/svg" width="20" height="20"
+                                viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                                stroke-linecap="round" stroke-linejoin="round">
+                                <path
+                                    d="M15 14c.2-1 .7-1.7 1.5-2.5 1-.9 1.5-2.2 1.5-3.5A6 6 0 0 0 6 8c0 1 .2 2.2 1.5 3.5.7.7 1.3 1.5 1.5 2.5" />
+                                <path d="M9 18h6" />
+                                <path d="M10 22h4" />
+                            </svg></span>
                         AI Suggested Answer
                     </h2>
                     <div class="answer-meta">
@@ -75,21 +106,40 @@
 
                 <div class="answer-content-live">
                     <div class="answer-block">
-                        <h3>📢 Say This:</h3>
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="vertical-align:middle;margin-right:6px">
+                                <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+                                <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                                <line x1="12" y1="19" x2="12" y2="22" />
+                            </svg> Say This:</h3>
                         <div id="suggestedAnswerLive" class="answer-text"></div>
                     </div>
 
                     <div class="answer-block explanation-block">
-                        <h3>💭 Why This Works:</h3>
+                        <h3><svg xmlns="http://www.w3.org/2000/svg" width="18" height="18" viewBox="0 0 24 24"
+                                fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                stroke-linejoin="round" style="vertical-align:middle;margin-right:6px">
+                                <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                            </svg> Why This Works:</h3>
                         <div id="explanationLive" class="explanation-text"></div>
                     </div>
 
                     <div class="answer-actions">
                         <button class="btn btn-primary" onclick="readAnswerAloud()">
-                            <span>🔊 Read Aloud</span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                                    stroke-linejoin="round" style="vertical-align:middle;margin-right:4px">
+                                    <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                                    <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                                </svg> Read Aloud</span>
                         </button>
                         <button class="btn btn-secondary" onclick="dismissAnswer()">
-                            <span>✓ Got It</span>
+                            <span><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24"
+                                    fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round"
+                                    stroke-linejoin="round" style="vertical-align:middle;margin-right:4px">
+                                    <polyline points="20 6 9 17 4 12" />
+                                </svg> Got It</span>
                         </button>
                     </div>
                 </div>
@@ -101,22 +151,41 @@
             <h2>How Live Assistant Works</h2>
             <div class="steps-grid">
                 <div class="step-item">
-                    <div class="step-icon">🎤</div>
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+                            <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                            <line x1="12" y1="19" x2="12" y2="22" />
+                        </svg></div>
                     <h3>1. Start Listening</h3>
                     <p>Click "Start Live Assistant" and allow microphone access to begin monitoring your sales call</p>
                 </div>
                 <div class="step-item">
-                    <div class="step-icon">🤖</div>
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="11" width="18" height="11" rx="2" ry="2" />
+                            <path d="M7 11V7a5 5 0 0 1 10 0v4" />
+                        </svg></div>
                     <h3>2. AI Detects Questions</h3>
                     <p>Our AI automatically identifies when customers ask technical questions in real-time</p>
                 </div>
                 <div class="step-item">
-                    <div class="step-icon">⚡</div>
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg></div>
                     <h3>3. Instant Answers</h3>
                     <p>Get immediate, confident answers displayed on your screen - no typing needed</p>
                 </div>
                 <div class="step-item">
-                    <div class="step-icon">💬</div>
+                    <div class="step-icon"><svg xmlns="http://www.w3.org/2000/svg" width="28" height="28"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z" />
+                        </svg></div>
                     <h3>4. Stay in Flow</h3>
                     <p>Keep the conversation natural while AI supports you in the background</p>
                 </div>
@@ -128,32 +197,65 @@
             <h2>Live Assistant Features</h2>
             <div class="feature-grid">
                 <div class="feature-item">
-                    <span class="feature-icon">🎯</span>
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <circle cx="12" cy="12" r="10" />
+                            <circle cx="12" cy="12" r="6" />
+                            <circle cx="12" cy="12" r="2" />
+                        </svg></span>
                     <h4>Automatic Detection</h4>
                     <p>No manual input - AI recognizes questions automatically from audio</p>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">⚡</span>
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2" />
+                        </svg></span>
                     <h4>Instant Response</h4>
                     <p>Answers appear in under 2 seconds</p>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">🔊</span>
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <polygon points="11 5 6 9 2 9 2 15 6 15 11 19 11 5" />
+                            <path d="M19.07 4.93a10 10 0 0 1 0 14.14M15.54 8.46a5 5 0 0 1 0 7.07" />
+                        </svg></span>
                     <h4>Voice Support</h4>
                     <p>Text-to-speech reads answers aloud if needed</p>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">📊</span>
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <line x1="18" y1="20" x2="18" y2="10" />
+                            <line x1="12" y1="20" x2="12" y2="4" />
+                            <line x1="6" y1="20" x2="6" y2="14" />
+                        </svg></span>
                     <h4>Confidence Scoring</h4>
                     <p>Know how reliable each answer is</p>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">📝</span>
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z" />
+                            <polyline points="14 2 14 8 20 8" />
+                            <line x1="16" y1="13" x2="8" y2="13" />
+                            <line x1="16" y1="17" x2="8" y2="17" />
+                        </svg></span>
                     <h4>Live Transcript</h4>
                     <p>See the conversation transcribed in real-time</p>
                 </div>
                 <div class="feature-item">
-                    <span class="feature-icon">🎨</span>
+                    <span class="feature-icon"><svg xmlns="http://www.w3.org/2000/svg" width="24" height="24"
+                            viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2"
+                            stroke-linecap="round" stroke-linejoin="round">
+                            <rect x="3" y="3" width="18" height="18" rx="2" />
+                            <path d="M9 9h6M9 12h6M9 15h4" />
+                        </svg></span>
                     <h4>Non-Intrusive</h4>
                     <p>Clean overlay that doesn't distract</p>
                 </div>
@@ -162,7 +264,12 @@
 
         <!-- Microphone Notice -->
         <div class="demo-notice">
-            <div class="notice-icon">🎤</div>
+            <div class="notice-icon"><svg xmlns="http://www.w3.org/2000/svg" width="32" height="32" viewBox="0 0 24 24"
+                    fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                    <path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z" />
+                    <path d="M19 10v2a7 7 0 0 1-14 0v-2" />
+                    <line x1="12" y1="19" x2="12" y2="22" />
+                </svg></div>
             <div class="notice-content">
                 <h3>Live Microphone Integration</h3>
                 <p>
@@ -286,10 +393,10 @@
         const statusIndicator = document.getElementById('statusIndicator');
         statusIndicator.innerHTML = '<span class="indicator-dot active"></span><span class="indicator-text">Listening</span>';
         document.getElementById('statusText').textContent = 'Listening to Call';
-        document.getElementById('statusIcon').textContent = '🎧';
+        document.getElementById('statusIcon').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M3 18v-6a9 9 0 0 1 18 0v6"/><path d="M21 19a2 2 0 0 1-2 2h-1a2 2 0 0 1-2-2v-3a2 2 0 0 1 2-2h3zM3 19a2 2 0 0 0 2 2h1a2 2 0 0 0 2-2v-3a2 2 0 0 0-2-2H3z"/></svg>';
 
         // Clear transcript
-        document.getElementById('transcriptBox').innerHTML = '<p class="transcript-placeholder">🎤 Listening to your conversation...</p>';
+        document.getElementById('transcriptBox').innerHTML = '<p class="transcript-placeholder"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg> Listening to your conversation...</p>';
 
         // Start speech recognition
         try {
@@ -321,7 +428,7 @@
         const statusIndicator = document.getElementById('statusIndicator');
         statusIndicator.innerHTML = '<span class="indicator-dot"></span><span class="indicator-text">Offline</span>';
         document.getElementById('statusText').textContent = 'Ready to Listen';
-        document.getElementById('statusIcon').textContent = '🎤';
+        document.getElementById('statusIcon').innerHTML = '<svg xmlns="http://www.w3.org/2000/svg" width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg>';
 
         showNotification('Live Assistant stopped', 'info');
     }
@@ -351,7 +458,7 @@
                 }
             } catch (error) {
                 console.error('Error:', error);
-                addToTranscript('AI', '❌ Error analyzing question. Please try again.');
+                addToTranscript('AI', 'Error analyzing question. Please try again.');
             }
         }
     }
@@ -392,7 +499,7 @@
 
     // Show analyzing state
     function showAnalyzing() {
-        addToTranscript('AI', '🤔 Analyzing question...');
+        addToTranscript('AI', 'Analyzing question...');
     }
 
     // Display live answer
@@ -417,7 +524,7 @@
         currentAnswer = data.answer;
 
         // Add to transcript
-        addToTranscript('AI', `✅ Answer ready (${data.confidence} confidence)`);
+        addToTranscript('AI', `Answer ready (${data.confidence} confidence)`);
 
         // Scroll answer into view
         answerDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
@@ -451,7 +558,7 @@
         const transcriptBox = document.getElementById('transcriptBox');
         transcriptBox.innerHTML = '';
         if (isListening) {
-            transcriptBox.innerHTML = '<p class="transcript-placeholder">🎤 Listening to your conversation...</p>';
+            transcriptBox.innerHTML = '<p class="transcript-placeholder"><svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" style="vertical-align:middle;margin-right:6px"><path d="M12 2a3 3 0 0 0-3 3v7a3 3 0 0 0 6 0V5a3 3 0 0 0-3-3z"/><path d="M19 10v2a7 7 0 0 1-14 0v-2"/><line x1="12" y1="19" x2="12" y2="22"/></svg> Listening to your conversation...</p>';
         }
     }
 
