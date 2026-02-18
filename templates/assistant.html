@@ -1,0 +1,480 @@
+{% extends "base.html" %}
+
+{% block title %}Live Call Assistant - SalesTech Copilot{% endblock %}
+
+{% block content %}
+<section class="section assistant-section">
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">Live Call Assistant</h1>
+            <p class="section-subtitle">AI-powered real-time support during your sales calls</p>
+        </div>
+
+        <!-- Live Monitoring Dashboard -->
+        <div class="live-dashboard">
+            <!-- Status Panel -->
+            <div class="status-panel card-3d">
+                <div class="status-header">
+                    <h2>
+                        <span class="status-icon" id="statusIcon">🎤</span>
+                        <span id="statusText">Ready to Listen</span>
+                    </h2>
+                    <div class="status-indicator" id="statusIndicator">
+                        <span class="indicator-dot"></span>
+                        <span class="indicator-text">Offline</span>
+                    </div>
+                </div>
+
+                <div class="control-buttons">
+                    <button id="startListeningBtn" class="btn btn-primary btn-large btn-3d"
+                        onclick="startLiveAssistant()">
+                        <span class="btn-icon">🎧</span>
+                        <span class="btn-text">Start Live Assistant</span>
+                    </button>
+                    <button id="stopListeningBtn" class="btn btn-danger btn-large" onclick="stopLiveAssistant()"
+                        style="display: none;">
+                        <span class="btn-icon">⏹️</span>
+                        <span class="btn-text">Stop Listening</span>
+                    </button>
+                </div>
+
+                <!-- Live Transcript -->
+                <div class="transcript-section" id="transcriptSection" style="display: none;">
+                    <h3>
+                        <span class="icon">📝</span>
+                        Live Conversation
+                    </h3>
+                    <div class="transcript-box" id="transcriptBox">
+                        <p class="transcript-placeholder">Listening for customer questions...</p>
+                    </div>
+                    <div class="transcript-controls">
+                        <button class="btn btn-secondary" onclick="clearTranscript()">Clear Transcript</button>
+                        <button class="btn btn-outline" onclick="toggleAutoScroll()">
+                            <span id="autoScrollText">Auto-scroll: ON</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Live Answer Display -->
+            <div class="answer-display card-3d" id="answerDisplay" style="display: none;">
+                <div class="answer-header">
+                    <h2>
+                        <span class="icon">💡</span>
+                        AI Suggested Answer
+                    </h2>
+                    <div class="answer-meta">
+                        <span class="detected-question" id="detectedQuestion"></span>
+                    </div>
+                </div>
+
+                <div class="confidence-indicator-live">
+                    <span class="confidence-label">Confidence:</span>
+                    <div id="confidenceBadgeLive" class="confidence-badge"></div>
+                </div>
+
+                <div class="answer-content-live">
+                    <div class="answer-block">
+                        <h3>📢 Say This:</h3>
+                        <div id="suggestedAnswerLive" class="answer-text"></div>
+                    </div>
+
+                    <div class="answer-block explanation-block">
+                        <h3>💭 Why This Works:</h3>
+                        <div id="explanationLive" class="explanation-text"></div>
+                    </div>
+
+                    <div class="answer-actions">
+                        <button class="btn btn-primary" onclick="readAnswerAloud()">
+                            <span>🔊 Read Aloud</span>
+                        </button>
+                        <button class="btn btn-secondary" onclick="dismissAnswer()">
+                            <span>✓ Got It</span>
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <!-- How It Works -->
+        <div class="how-it-works-live">
+            <h2>How Live Assistant Works</h2>
+            <div class="steps-grid">
+                <div class="step-item">
+                    <div class="step-icon">🎤</div>
+                    <h3>1. Start Listening</h3>
+                    <p>Click "Start Live Assistant" and allow microphone access to begin monitoring your sales call</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">🤖</div>
+                    <h3>2. AI Detects Questions</h3>
+                    <p>Our AI automatically identifies when customers ask technical questions in real-time</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">⚡</div>
+                    <h3>3. Instant Answers</h3>
+                    <p>Get immediate, confident answers displayed on your screen - no typing needed</p>
+                </div>
+                <div class="step-item">
+                    <div class="step-icon">💬</div>
+                    <h3>4. Stay in Flow</h3>
+                    <p>Keep the conversation natural while AI supports you in the background</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Features -->
+        <div class="features-live">
+            <h2>Live Assistant Features</h2>
+            <div class="feature-grid">
+                <div class="feature-item">
+                    <span class="feature-icon">🎯</span>
+                    <h4>Automatic Detection</h4>
+                    <p>No manual input - AI recognizes questions automatically from audio</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">⚡</span>
+                    <h4>Instant Response</h4>
+                    <p>Answers appear in under 2 seconds</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🔊</span>
+                    <h4>Voice Support</h4>
+                    <p>Text-to-speech reads answers aloud if needed</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📊</span>
+                    <h4>Confidence Scoring</h4>
+                    <p>Know how reliable each answer is</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">📝</span>
+                    <h4>Live Transcript</h4>
+                    <p>See the conversation transcribed in real-time</p>
+                </div>
+                <div class="feature-item">
+                    <span class="feature-icon">🎨</span>
+                    <h4>Non-Intrusive</h4>
+                    <p>Clean overlay that doesn't distract</p>
+                </div>
+            </div>
+        </div>
+
+        <!-- Microphone Notice -->
+        <div class="demo-notice">
+            <div class="notice-icon">🎤</div>
+            <div class="notice-content">
+                <h3>Live Microphone Integration</h3>
+                <p>
+                    This application uses your device's microphone to listen to live sales calls in real-time.
+                    When you click "Start Live Assistant", you'll be asked to grant microphone permission.
+                </p>
+                <ul>
+                    <li><strong>Browser Support:</strong> Works best in Chrome, Edge, and Safari</li>
+                    <li><strong>Privacy:</strong> Audio is processed locally and only transcribed text is sent to the
+                        server</li>
+                    <li><strong>Continuous Listening:</strong> AI monitors the entire conversation automatically</li>
+                    <li><strong>Question Detection:</strong> Automatically identifies when customers ask technical
+                        questions</li>
+                </ul>
+                <p>
+                    <strong>To use:</strong> Click "Start Live Assistant", allow microphone access, and start your sales
+                    call.
+                    The AI will automatically detect questions and provide instant answers!
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let isListening = false;
+    let autoScroll = true;
+    let currentAnswer = null;
+    let recognition = null;
+    let isRecognitionActive = false;
+
+    // Initialize Speech Recognition
+    function initializeSpeechRecognition() {
+        // Check browser support
+        const SpeechRecognition = window.SpeechRecognition || window.webkitSpeechRecognition;
+
+        if (!SpeechRecognition) {
+            alert('Speech recognition is not supported in this browser. Please use Chrome, Edge, or Safari.');
+            return null;
+        }
+
+        recognition = new SpeechRecognition();
+        recognition.continuous = true; // Keep listening continuously
+        recognition.interimResults = true; // Get results as user speaks
+        recognition.lang = 'en-US';
+
+        // Handle speech results
+        recognition.onresult = function (event) {
+            let interimTranscript = '';
+            let finalTranscript = '';
+
+            for (let i = event.resultIndex; i < event.results.length; i++) {
+                const transcript = event.results[i][0].transcript;
+
+                if (event.results[i].isFinal) {
+                    finalTranscript += transcript;
+                } else {
+                    interimTranscript += transcript;
+                }
+            }
+
+            // Process final transcript
+            if (finalTranscript) {
+                processCustomerSpeech(finalTranscript.trim());
+            }
+        };
+
+        // Handle errors
+        recognition.onerror = function (event) {
+            console.error('Speech recognition error:', event.error);
+
+            if (event.error === 'not-allowed') {
+                showNotification('Microphone access denied. Please allow microphone access and try again.', 'warning');
+                stopLiveAssistant();
+            } else if (event.error === 'no-speech') {
+                // Ignore no-speech errors, just keep listening
+                console.log('No speech detected, continuing...');
+            } else {
+                showNotification(`Speech recognition error: ${event.error}`, 'warning');
+            }
+        };
+
+        // Handle end of recognition
+        recognition.onend = function () {
+            isRecognitionActive = false;
+
+            // Restart if still supposed to be listening
+            if (isListening) {
+                try {
+                    recognition.start();
+                    isRecognitionActive = true;
+                } catch (e) {
+                    console.error('Error restarting recognition:', e);
+                }
+            }
+        };
+
+        return recognition;
+    }
+
+    // Start Live Assistant
+    function startLiveAssistant() {
+        // Initialize recognition if not already done
+        if (!recognition) {
+            recognition = initializeSpeechRecognition();
+            if (!recognition) {
+                return; // Browser doesn't support speech recognition
+            }
+        }
+
+        isListening = true;
+
+        // Update UI
+        document.getElementById('startListeningBtn').style.display = 'none';
+        document.getElementById('stopListeningBtn').style.display = 'inline-flex';
+        document.getElementById('transcriptSection').style.display = 'block';
+
+        // Update status
+        const statusIndicator = document.getElementById('statusIndicator');
+        statusIndicator.innerHTML = '<span class="indicator-dot active"></span><span class="indicator-text">Listening</span>';
+        document.getElementById('statusText').textContent = 'Listening to Call';
+        document.getElementById('statusIcon').textContent = '🎧';
+
+        // Clear transcript
+        document.getElementById('transcriptBox').innerHTML = '<p class="transcript-placeholder">🎤 Listening to your conversation...</p>';
+
+        // Start speech recognition
+        try {
+            recognition.start();
+            isRecognitionActive = true;
+            showNotification('Live Assistant activated! Microphone is listening...', 'success');
+        } catch (e) {
+            console.error('Error starting recognition:', e);
+            showNotification('Failed to start microphone. Please try again.', 'warning');
+            stopLiveAssistant();
+        }
+    }
+
+    // Stop Live Assistant
+    function stopLiveAssistant() {
+        isListening = false;
+
+        // Stop speech recognition
+        if (recognition && isRecognitionActive) {
+            recognition.stop();
+            isRecognitionActive = false;
+        }
+
+        // Update UI
+        document.getElementById('startListeningBtn').style.display = 'inline-flex';
+        document.getElementById('stopListeningBtn').style.display = 'none';
+
+        // Update status
+        const statusIndicator = document.getElementById('statusIndicator');
+        statusIndicator.innerHTML = '<span class="indicator-dot"></span><span class="indicator-text">Offline</span>';
+        document.getElementById('statusText').textContent = 'Ready to Listen';
+        document.getElementById('statusIcon').textContent = '🎤';
+
+        showNotification('Live Assistant stopped', 'info');
+    }
+
+    // Process customer speech
+    async function processCustomerSpeech(text) {
+        // Add to transcript
+        addToTranscript('Customer', text);
+
+        // Check if it's a question
+        if (isQuestion(text)) {
+            // Show analyzing state
+            showAnalyzing();
+
+            // Call API
+            try {
+                const response = await fetch('/api/analyze', {
+                    method: 'POST',
+                    headers: { 'Content-Type': 'application/json' },
+                    body: JSON.stringify({ conversation: text })
+                });
+
+                const data = await response.json();
+
+                if (data.success) {
+                    displayLiveAnswer(data, text);
+                }
+            } catch (error) {
+                console.error('Error:', error);
+                addToTranscript('AI', '❌ Error analyzing question. Please try again.');
+            }
+        }
+    }
+
+    // Check if text is a question
+    function isQuestion(text) {
+        const questionWords = ['how', 'what', 'why', 'when', 'where', 'who', 'can', 'do', 'does', 'is', 'are', 'will', 'would', 'could', 'should'];
+        const lowerText = text.toLowerCase();
+        return questionWords.some(word => lowerText.includes(word)) || text.includes('?');
+    }
+
+    // Add to transcript
+    function addToTranscript(speaker, text) {
+        const transcriptBox = document.getElementById('transcriptBox');
+
+        // Remove placeholder if exists
+        const placeholder = transcriptBox.querySelector('.transcript-placeholder');
+        if (placeholder) {
+            placeholder.remove();
+        }
+
+        const entry = document.createElement('div');
+        entry.className = 'transcript-entry ' + speaker.toLowerCase();
+
+        const time = new Date().toLocaleTimeString();
+        entry.innerHTML = `
+        <span class="transcript-time">${time}</span>
+        <span class="transcript-speaker">${speaker}:</span>
+        <span class="transcript-text">${text}</span>
+    `;
+
+        transcriptBox.appendChild(entry);
+
+        if (autoScroll) {
+            transcriptBox.scrollTop = transcriptBox.scrollHeight;
+        }
+    }
+
+    // Show analyzing state
+    function showAnalyzing() {
+        addToTranscript('AI', '🤔 Analyzing question...');
+    }
+
+    // Display live answer
+    function displayLiveAnswer(data, originalQuestion) {
+        // Remove analyzing message
+        const entries = document.querySelectorAll('.transcript-entry.ai');
+        if (entries.length > 0) {
+            entries[entries.length - 1].remove();
+        }
+
+        // Show answer display
+        const answerDisplay = document.getElementById('answerDisplay');
+        answerDisplay.style.display = 'block';
+
+        // Populate answer
+        document.getElementById('detectedQuestion').textContent = `"${originalQuestion}"`;
+        document.getElementById('confidenceBadgeLive').textContent = data.confidence;
+        document.getElementById('confidenceBadgeLive').className = 'confidence-badge ' + data.confidence.toLowerCase();
+        document.getElementById('suggestedAnswerLive').textContent = data.answer;
+        document.getElementById('explanationLive').textContent = data.explanation;
+
+        currentAnswer = data.answer;
+
+        // Add to transcript
+        addToTranscript('AI', `✅ Answer ready (${data.confidence} confidence)`);
+
+        // Scroll answer into view
+        answerDisplay.scrollIntoView({ behavior: 'smooth', block: 'nearest' });
+
+        // Pulse animation
+        answerDisplay.classList.add('pulse-animation');
+        setTimeout(() => answerDisplay.classList.remove('pulse-animation'), 1000);
+    }
+
+    // Read answer aloud
+    function readAnswerAloud() {
+        if ('speechSynthesis' in window && currentAnswer) {
+            const utterance = new SpeechSynthesisUtterance(currentAnswer);
+            utterance.rate = 0.9;
+            utterance.pitch = 1;
+            speechSynthesis.speak(utterance);
+            showNotification('Reading answer aloud...', 'info');
+        } else {
+            showNotification('Text-to-speech not supported in this browser', 'warning');
+        }
+    }
+
+    // Dismiss answer
+    function dismissAnswer() {
+        document.getElementById('answerDisplay').style.display = 'none';
+        currentAnswer = null;
+    }
+
+    // Clear transcript
+    function clearTranscript() {
+        const transcriptBox = document.getElementById('transcriptBox');
+        transcriptBox.innerHTML = '';
+        if (isListening) {
+            transcriptBox.innerHTML = '<p class="transcript-placeholder">🎤 Listening to your conversation...</p>';
+        }
+    }
+
+    // Toggle auto-scroll
+    function toggleAutoScroll() {
+        autoScroll = !autoScroll;
+        document.getElementById('autoScrollText').textContent = `Auto-scroll: ${autoScroll ? 'ON' : 'OFF'}`;
+    }
+
+    // Show notification
+    function showNotification(message, type) {
+        // Create notification element
+        const notification = document.createElement('div');
+        notification.className = `notification notification-${type}`;
+        notification.textContent = message;
+
+        document.body.appendChild(notification);
+
+        setTimeout(() => notification.classList.add('show'), 100);
+        setTimeout(() => {
+            notification.classList.remove('show');
+            setTimeout(() => notification.remove(), 300);
+        }, 3000);
+    }
+</script>
+{% endblock %}

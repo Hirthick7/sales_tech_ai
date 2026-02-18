@@ -1,0 +1,162 @@
+{% extends "base.html" %}
+
+{% block title %}Home - SalesTech Copilot{% endblock %}
+
+{% block content %}
+<!-- Hero Section -->
+<section class="hero">
+    <div class="container">
+        <div class="hero-content">
+            <h1 class="hero-title animate-fade-in">
+                Never Lose a Deal to<br>
+                <span class="gradient-text">Technical Questions</span> Again
+            </h1>
+            <p class="hero-subtitle animate-fade-in-delay">
+                Real-time AI assistant that helps salespeople answer technical customer questions
+                during live calls with confidence and accuracy.
+            </p>
+            <div class="hero-buttons animate-fade-in-delay-2">
+                <a href="/assistant" class="btn btn-primary btn-3d">Try Live Assistant</a>
+                <a href="/knowledge" class="btn btn-secondary btn-3d">Explore Knowledge Base</a>
+            </div>
+        </div>
+        <div class="hero-visual">
+            <div class="floating-card card-3d">
+                <div class="card-icon">💡</div>
+                <div class="card-text">Instant Answers</div>
+            </div>
+            <div class="floating-card card-3d delay-1">
+                <div class="card-icon">🎯</div>
+                <div class="card-text">High Confidence</div>
+            </div>
+            <div class="floating-card card-3d delay-2">
+                <div class="card-icon">⚡</div>
+                <div class="card-text">Real-Time</div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Problem & Solution -->
+<section class="section bg-light">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">The Problem Sales Teams Face</h2>
+            <p class="section-subtitle">Technical questions shouldn't kill your deals</p>
+        </div>
+        <div class="grid-3">
+            <div class="feature-card card-hover">
+                <div class="feature-icon problem">❌</div>
+                <h3>Lost Deals</h3>
+                <p>67% of deals are lost when salespeople can't answer technical questions confidently on the spot.</p>
+            </div>
+            <div class="feature-card card-hover">
+                <div class="feature-icon problem">⏰</div>
+                <h3>Delayed Responses</h3>
+                <p>Saying "I'll get back to you" breaks momentum and gives competitors an opening.</p>
+            </div>
+            <div class="feature-card card-hover">
+                <div class="feature-icon problem">😰</div>
+                <h3>Lack of Confidence</h3>
+                <p>Non-technical salespeople feel unprepared when customers ask about architecture, security, or
+                    integrations.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- How It Works -->
+<section class="section">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title">How It Works</h2>
+            <p class="section-subtitle">Three simple steps to confident technical conversations</p>
+        </div>
+        <div class="steps-container">
+            <div class="step-card">
+                <div class="step-number">1</div>
+                <div class="step-content">
+                    <h3>Customer Asks a Question</h3>
+                    <p>During your live call, the customer asks about security, integrations, or technical architecture.
+                    </p>
+                    <div class="step-visual">
+                        <div class="speech-bubble">
+                            "How does your platform handle data encryption?"
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-card">
+                <div class="step-number">2</div>
+                <div class="step-content">
+                    <h3>AI Analyzes & Finds Answer</h3>
+                    <p>Type the question into SalesTech Copilot. Our AI instantly searches the knowledge base and finds
+                        the perfect answer.</p>
+                    <div class="step-visual">
+                        <div class="loading-dots">
+                            <span></span><span></span><span></span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="step-arrow">→</div>
+            <div class="step-card">
+                <div class="step-number">3</div>
+                <div class="step-content">
+                    <h3>Get Simple, Confident Answer</h3>
+                    <p>Receive a sales-friendly answer with a simple analogy and confidence score. Sound like an expert!
+                    </p>
+                    <div class="step-visual">
+                        <div class="confidence-badge high">High Confidence</div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Benefits -->
+<section class="section bg-gradient">
+    <div class="container">
+        <div class="section-header">
+            <h2 class="section-title text-white">Benefits for Your Sales Team</h2>
+            <p class="section-subtitle text-white">Transform technical conversations into closed deals</p>
+        </div>
+        <div class="grid-2">
+            <div class="benefit-card">
+                <div class="benefit-icon">📈</div>
+                <h3>Increase Win Rates</h3>
+                <p>Close more deals by answering technical questions confidently in real-time without putting customers
+                    on hold.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">⚡</div>
+                <h3>Faster Sales Cycles</h3>
+                <p>Eliminate back-and-forth delays. Answer questions immediately and keep the momentum going.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🎓</div>
+                <h3>Empower Non-Technical Reps</h3>
+                <p>Give every salesperson the knowledge of your best technical expert, instantly accessible.</p>
+            </div>
+            <div class="benefit-card">
+                <div class="benefit-icon">🛡️</div>
+                <h3>Consistent Messaging</h3>
+                <p>Ensure accurate, approved answers every time. No more inconsistent or incorrect information.</p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- CTA Section -->
+<section class="section cta-section">
+    <div class="container">
+        <div class="cta-content">
+            <h2 class="cta-title">Ready to Transform Your Sales Calls?</h2>
+            <p class="cta-text">Start answering technical questions with confidence today</p>
+            <a href="/assistant" class="btn btn-primary btn-large btn-3d">Try Live Assistant Now</a>
+        </div>
+    </div>
+</section>
+{% endblock %}

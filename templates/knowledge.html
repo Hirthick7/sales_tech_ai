@@ -1,0 +1,228 @@
+{% extends "base.html" %}
+
+{% block title %}Product Knowledge - SalesTech Copilot{% endblock %}
+
+{% block content %}
+<section class="section knowledge-section">
+    <div class="container">
+        <div class="section-header">
+            <h1 class="section-title">Product Knowledge Base</h1>
+            <p class="section-subtitle">Everything you need to know about our technical capabilities - explained simply
+            </p>
+        </div>
+
+        <!-- Search Bar -->
+        <div class="knowledge-search">
+            <input type="text" id="knowledgeSearch" class="search-input"
+                placeholder="Search for topics like 'security', 'integrations', 'pricing'..."
+                onkeyup="filterKnowledge()">
+            <span class="search-icon">🔍</span>
+        </div>
+
+        <!-- Category Tabs -->
+        <div class="category-tabs">
+            <button class="category-tab active" onclick="filterCategory('all')">All Topics</button>
+            <button class="category-tab" onclick="filterCategory('architecture')">Architecture</button>
+            <button class="category-tab" onclick="filterCategory('security')">Security</button>
+            <button class="category-tab" onclick="filterCategory('integration')">Integrations</button>
+            <button class="category-tab" onclick="filterCategory('pricing')">Pricing</button>
+            <button class="category-tab" onclick="filterCategory('support')">Support</button>
+        </div>
+
+        <!-- Knowledge Base Content -->
+        <div class="knowledge-content">
+            {% for category, questions in faqs.items() %}
+            <div class="knowledge-category" data-category="{{ category }}">
+                <h2 class="category-title">
+                    <span class="category-icon">
+                        {% if category == 'architecture' %}🏗️
+                        {% elif category == 'security' %}🔒
+                        {% elif category == 'integration' %}🔌
+                        {% elif category == 'pricing' %}💰
+                        {% elif category == 'support' %}🤝
+                        {% endif %}
+                    </span>
+                    {{ category.title() }}
+                </h2>
+
+                <div class="faq-grid">
+                    {% for faq in questions %}
+                    <div class="faq-card card-hover" data-keywords="{{ faq.keywords|join(' ') }}">
+                        <div class="faq-question">
+                            <h3>{{ faq.question }}</h3>
+                        </div>
+                        <div class="faq-answer">
+                            <div class="answer-section">
+                                <h4>Technical Answer:</h4>
+                                <p>{{ faq.answer }}</p>
+                            </div>
+                            <div class="answer-section explanation-section">
+                                <h4>💡 Simple Explanation:</h4>
+                                <p class="simple-explanation">{{ faq.simple_explanation }}</p>
+                            </div>
+                        </div>
+                        <button class="expand-btn" onclick="toggleFaq(this)">
+                            <span class="expand-text">Read More</span>
+                            <span class="expand-icon">▼</span>
+                        </button>
+                    </div>
+                    {% endfor %}
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+
+        <!-- No Results Message -->
+        <div id="noResults" class="no-results" style="display: none;">
+            <div class="no-results-icon">🔍</div>
+            <h3>No results found</h3>
+            <p>Try different keywords or browse all topics</p>
+            <button class="btn btn-primary" onclick="resetSearch()">Clear Search</button>
+        </div>
+
+        <!-- Quick Reference Guide -->
+        <div class="quick-reference">
+            <h2>Quick Reference Guide</h2>
+            <div class="reference-grid">
+                <div class="reference-card">
+                    <h3>🏗️ Architecture</h3>
+                    <ul>
+                        <li>Microservices-based</li>
+                        <li>Cloud-native design</li>
+                        <li>Horizontal auto-scaling</li>
+                        <li>99.9% uptime SLA</li>
+                    </ul>
+                </div>
+                <div class="reference-card">
+                    <h3>🔒 Security</h3>
+                    <ul>
+                        <li>AES-256 encryption</li>
+                        <li>SOC 2 Type II certified</li>
+                        <li>GDPR compliant</li>
+                        <li>Multi-factor authentication</li>
+                    </ul>
+                </div>
+                <div class="reference-card">
+                    <h3>🔌 Integrations</h3>
+                    <ul>
+                        <li>REST API available</li>
+                        <li>Salesforce connector</li>
+                        <li>HubSpot integration</li>
+                        <li>Slack notifications</li>
+                    </ul>
+                </div>
+                <div class="reference-card">
+                    <h3>💰 Pricing</h3>
+                    <ul>
+                        <li>Tiered subscription model</li>
+                        <li>14-day free trial</li>
+                        <li>20% annual discount</li>
+                        <li>No credit card required</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+        <!-- CTA -->
+        <div class="knowledge-cta">
+            <h2>Need help during a live call?</h2>
+            <p>Use our Live Call Assistant for instant answers</p>
+            <a href="/assistant" class="btn btn-primary btn-large btn-3d">Try Live Assistant</a>
+        </div>
+    </div>
+</section>
+{% endblock %}
+
+{% block scripts %}
+<script>
+    let currentCategory = 'all';
+
+    // Toggle FAQ card expansion
+    function toggleFaq(button) {
+        const card = button.closest('.faq-card');
+        const answer = card.querySelector('.faq-answer');
+        const icon = button.querySelector('.expand-icon');
+        const text = button.querySelector('.expand-text');
+
+        if (card.classList.contains('expanded')) {
+            card.classList.remove('expanded');
+            answer.style.display = 'none';
+            icon.textContent = '▼';
+            text.textContent = 'Read More';
+        } else {
+            card.classList.add('expanded');
+            answer.style.display = 'block';
+            icon.textContent = '▲';
+            text.textContent = 'Show Less';
+        }
+    }
+
+    // Filter by category
+    function filterCategory(category) {
+        currentCategory = category;
+
+        // Update active tab
+        document.querySelectorAll('.category-tab').forEach(tab => {
+            tab.classList.remove('active');
+        });
+        event.target.classList.add('active');
+
+        // Filter categories
+        const categories = document.querySelectorAll('.knowledge-category');
+        let visibleCount = 0;
+
+        categories.forEach(cat => {
+            if (category === 'all' || cat.dataset.category === category) {
+                cat.style.display = 'block';
+                visibleCount++;
+            } else {
+                cat.style.display = 'none';
+            }
+        });
+
+        // Apply search filter if active
+        const searchTerm = document.getElementById('knowledgeSearch').value;
+        if (searchTerm) {
+            filterKnowledge();
+        } else {
+            document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+        }
+    }
+
+    // Filter by search term
+    function filterKnowledge() {
+        const searchTerm = document.getElementById('knowledgeSearch').value.toLowerCase();
+        const cards = document.querySelectorAll('.faq-card');
+        let visibleCount = 0;
+
+        cards.forEach(card => {
+            const category = card.closest('.knowledge-category');
+            const categoryMatch = currentCategory === 'all' || category.dataset.category === currentCategory;
+
+            if (!categoryMatch) {
+                card.style.display = 'none';
+                return;
+            }
+
+            const question = card.querySelector('.faq-question h3').textContent.toLowerCase();
+            const answer = card.querySelector('.faq-answer').textContent.toLowerCase();
+            const keywords = card.dataset.keywords.toLowerCase();
+
+            if (!searchTerm || question.includes(searchTerm) || answer.includes(searchTerm) || keywords.includes(searchTerm)) {
+                card.style.display = 'block';
+                visibleCount++;
+            } else {
+                card.style.display = 'none';
+            }
+        });
+
+        document.getElementById('noResults').style.display = visibleCount === 0 ? 'block' : 'none';
+    }
+
+    // Reset search
+    function resetSearch() {
+        document.getElementById('knowledgeSearch').value = '';
+        filterKnowledge();
+    }
+</script>
+{% endblock %}
